@@ -1,0 +1,152 @@
+;/////////////////////////////////////////////////////////////////////
+;
+; ClpxUSB.INF
+;
+; Windows Still Image INF File for Nikon Coolpix 880/990
+;
+;  Installer Version  2003/04/16
+;
+;/////////////////////////////////////////////////////////////////////
+[Version]
+LayoutFile=Layout.inf, Layout1.inf, Layout2.inf
+Signature="$CHICAGO$"
+Class=Image
+ClassGUID={6bdd1fc6-810f-11d0-bec7-08002be2092f}
+Provider=%ProviderName%
+DriverVer=06/06/2001,1.0.0.3001
+
+[ControlFlags]
+ExcludeFromSelect=*
+
+;////////////////////////////////////////////////////////////////////
+; ManufacturerNameSection
+;////////////////////////////////////////////////////////////////////
+[Manufacturer]
+%Mfg%=Models
+
+[Models]
+%DeviceDesc0102%=CoolPix990.Install,USB\VID_04B0&PID_0102
+%DeviceDesc0103%=CoolPix880.Install,USB\VID_04B0&PID_0103
+
+;////////////////////////////////////////////////////////////////////
+; COOLPIX990 InstallSection   (for Windows98/Me)
+;////////////////////////////////////////////////////////////////////
+[CoolPix990.Install]
+SubClass=StillImage
+DeviceType=2
+DeviceSubType=0x0102
+Capabilities=0
+AddReg=CoolPixUSB.AddReg
+CopyFiles=CoolPix.CopyUSBFiles
+DelFiles=CoolPix.DelSysFiles
+ICMProfiles=sRGB Color Space Profile.icm
+UninstallSection=Uninstall.CoolPix
+
+;////////////////////////////////////////////////////////////////////
+; COOLPIX880 InstallSection   (for Windows98/Me) 
+;////////////////////////////////////////////////////////////////////
+[CoolPix880.Install]
+SubClass=StillImage
+DeviceType=2
+DeviceSubType=0x0103
+Capabilities=0
+AddReg=CoolPixUSB.AddReg
+CopyFiles=CoolPix.CopyUSBFiles
+DelFiles=CoolPix.DelSysFiles
+ICMProfiles=sRGB Color Space Profile.icm
+UninstallSection=Uninstall.CoolPix
+
+;////////////////////////////////////////////////////////////////////
+; COOLPIX990 InstallSection.nt (for Windows2000/XP)
+;////////////////////////////////////////////////////////////////////
+[CoolPix990.Install.nt]
+Include=sti.inf
+Needs=STI.USBSection
+SubClass=StillImage
+DeviceType=2
+DeviceSubType=0x0102
+Capabilities=0
+AddReg=CoolPixUSB.AddReg
+CopyFiles=CoolPix.CopySysFiles,CoolPix.CopyUSBFiles
+DelFiles=CoolPix.DelSysFiles
+ICMProfiles=sRGB Color Space Profile.icm
+UninstallSection=Uninstall.CoolPix
+
+;////////////////////////////////////////////////////////////////////
+; COOLPIX990 InstallSection.nt.Services  (for Windows 2000/XP)
+;////////////////////////////////////////////////////////////////////
+[CoolPix990.Install.nt.Services]
+Include=sti.inf
+Needs=STI.USBSection.Services
+
+;////////////////////////////////////////////////////////////////////
+;  COOLPIX880 InstallSection.nt (for Windows2000/XP)
+;////////////////////////////////////////////////////////////////////
+[CoolPix880.Install.nt]
+Include=sti.inf
+Needs=STI.USBSection
+SubClass=StillImage
+DeviceType=2
+DeviceSubType=0x0103
+Capabilities=0
+AddReg=CoolPixUSB.AddReg
+CopyFiles=CoolPix.CopySysFiles,CoolPix.CopyUSBFiles
+DelFiles=CoolPix.DelSysFiles
+ICMProfiles=sRGB Color Space Profile.icm
+UninstallSection=Uninstall.CoolPix
+
+;////////////////////////////////////////////////////////////////////
+;  COOLPIX880 InstallSection.nt.Services  (for Windows 2000/XP)
+;////////////////////////////////////////////////////////////////////
+[CoolPix880.Install.nt.Services]
+Include=sti.inf
+Needs=STI.USBSection.Services
+
+
+;////////////////////////////////////////////////////////////////////
+; Add Registry Section
+;////////////////////////////////////////////////////////////////////
+[CoolPixUSB.AddReg]
+HKR,,HardwareConfig,1,4
+HKR,,DevLoader,,*NTKERN
+HKR,,NTMPDriver,,usbscan.sys
+HKR,,USDClass,,"{1EAB84A0-9DA8-11d3-B409-00C04F87578E}"
+HKCR,CLSID\{1EAB84A0-9DA8-11d3-B409-00C04F87578E},,,"Nikon STI USD"
+HKCR,CLSID\{1EAB84A0-9DA8-11d3-B409-00C04F87578E}\InProcServer32,,,%11%\NKDUSD.dll
+HKCR,CLSID\{1EAB84A0-9DA8-11d3-B409-00C04F87578E}\InProcServer32,ThreadingModel,,"Both"
+
+[SourceDisksNames]
+1=%DiskName%,,
+
+[SourceDisksFiles]
+NKDUSD.dll=1
+
+[DestinationDirs]
+EpCm.DelSysFiles=11
+CoolPix.CopySysFiles=11
+CoolPix.CopyWinInfFiles=17
+CoolPix.CopyWinFiles=10
+CoolPix.CopyUSBFiles=10,system32\drivers
+
+[CoolPix.CopySysFiles]
+NKDUSD.dll
+
+[Camera.CopyTwainFiles]
+
+[CoolPix.CopyUSBFiles]
+usbscan.sys
+
+[CoolPix.CopyUSBFiles.nt]
+
+[Uninstall.CoolPix]
+DelFiles=CoolPix.CopySysFiles
+
+[CoolPix.DelSysFiles]
+usbscan.sys,,,1
+
+[Strings]
+ProviderName="Nikon Corporation"
+Mfg="Nikon Corporation"
+DeviceDesc0102="Nikon COOLPIX990"
+DeviceDesc0103="Nikon COOLPIX880"
+DiskName="Nikon View CD-ROM"

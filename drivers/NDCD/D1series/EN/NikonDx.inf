@@ -1,0 +1,75 @@
+; NikonDX.INF -- 1394WDM Device INF for Win98SE/Me/2000/XP
+
+[Version]
+signature="$CHICAGO$"
+Class=NikonDx;Nikon1394
+ClassGuid={F79E4260-5965-11d4-9220-0000F45D03F8}
+
+Provider=%Nkft%
+LayoutFile=LAYOUT.INF
+
+[SourceDisksNames]
+1394= "Nikon View CD-ROM",,0000-0000
+
+[SourceDisksFiles]
+NikonDx.SYS = 1394
+
+[DestinationDirs]
+defaultdestdir=11
+Nikon1394.CopyFiles=10,system32\drivers
+
+; =================== Class Sections ===========================
+[ClassInstall32]
+Addreg=Nikon1394ClassReg
+
+[ClassInstall]
+Addreg=Nikon1394ClassReg
+
+[Nikon1394ClassReg]
+HKR,,,,%1394WDMClassName%
+HKR,,Icon,,-21
+
+; =================== Table of content =========================
+
+[Manufacturer]
+%NikonMfg%=NikonCorporation
+
+; =================== Microsoft ========================
+
+[NikonCorporation]
+%1394\NIKON&D1.DeviceDesc%=NIKON1394,1394\NIKON&D1
+%1394\NIKON&D1.DeviceDesc%=NIKON1394,1394\NIKON&D1H
+%1394\NIKON&D1.DeviceDesc%=NIKON1394,1394\NIKON&D1X
+
+[Nikon1394]
+AddReg=Nikon1394.AddReg
+CopyFiles=Nikon1394.CopyFiles
+
+[Nikon1394.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,NikonDx.sys
+
+[Nikon1394.NT]
+AddReg=Nikon1394.AddReg
+CopyFiles=Nikon1394.CopyFiles
+
+[Nikon1394.NT.Services]
+AddService = Nikon1394,2,Nikon1394_ServiceInstallSection
+
+[Nikon1394_ServiceInstallSection]
+DisplayName=%NikonDriverName%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\NikonDx.sys
+
+[Nikon1394.CopyFiles]
+NikonDx.sys
+
+[Strings]
+NikonDriverName="Nikon1394Driver"
+Nkft="Nikon Corporation"
+1394WDMClassName="Nikon 1394 Protocol Device"
+NikonMfg="Nikon Corporation"
+1394\NIKON&D1.DeviceDesc="Nikon Digital Camera D1 Series"
+
