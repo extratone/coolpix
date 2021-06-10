@@ -1,6 +1,6 @@
 # Nikon COOLPIX 990
 
-![COOLPIX 990 Front](https://i.snap.as/qK824VIH.jpg)
+![COOLPIX 990 Scanned](https://user-images.githubusercontent.com/43663476/121445316-d56d1b80-c956-11eb-9441-bf10f59348f9.png)
 
 ## Documentation/Drivers for the Nikon COOLPIX 990 digicam.
 
@@ -27,6 +27,8 @@
 -   Compatible with Fisheye Converter FC-E8, Wideangle Converter WC-E63 and Telephoto Converters TC-E2 / TC-E3ED
 -   Compatible with Wideangle Converter WC-E68 (requires Lens Adapter UR-E7)
 -   A successor of this camera is Nikon COOLPIX 995 (2001).
+
+![COOLPIX 990 Front](https://i.snap.as/qK824VIH.jpg)
 
 ## Specifications
 
